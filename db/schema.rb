@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 6) do
+ActiveRecord::Schema.define(version: 7) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 6) do
     t.string "correct_answer"
     t.string "incorrect_answer"
     t.integer "catagory_id"
+    t.string "incorrect_answer_two"
+    t.string "incorrect_answer_three"
   end
 
   create_table "sessions", force: :cascade do |t|
