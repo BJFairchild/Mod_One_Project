@@ -14,10 +14,8 @@
 
 class APICommunicator
     def self.load
-
-        1000.times do
-
-            m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
+        40.times do
+            m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=50&type=multiple"))
 
             Question.find_or_create_by(question_text: m_q["results"][0]["question"]) do |ques|
                 ques.correct_answer = m_q["results"][0]["correct_answer"],
