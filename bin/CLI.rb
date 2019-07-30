@@ -29,3 +29,4 @@ class CLI
 
     def self.trivia
     end
+end
