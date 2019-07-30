@@ -1,6 +1,6 @@
 require_relative '../config/environment'
 
-TRIVIA_API = "https://opentdb.com/api.php?amount=25&difficulty=easy&type=multiple"
+TRIVIA_API = "https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple"
 
 class CLI
     def self.run
