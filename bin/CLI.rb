@@ -28,5 +28,6 @@ class CLI
     end
 
     def self.trivia
+        puts Question.column_names=question_text.sample
     end
 end
