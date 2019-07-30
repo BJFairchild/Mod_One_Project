@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 7) do
+ActiveRecord::Schema.define(version: 8) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "title"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 7) do
     t.string "question_text"
     t.string "correct_answer"
     t.string "incorrect_answer"
-    t.integer "catagory_id"
     t.string "incorrect_answer_two"
     t.string "incorrect_answer_three"
+    t.string "difficulty"
+    t.string "catagory"
   end
 
   create_table "sessions", force: :cascade do |t|
