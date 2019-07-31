@@ -13,6 +13,7 @@ class CLI
             puts "Well what's that first and last name then?"
             new_user_input= STDIN.gets.chomp
             User.create(name: new_user_input)
+            binding.pry
         else
             puts "*Does not compute*"
             self.run
@@ -94,12 +95,6 @@ class CLI
         puts correct_index
         
     end
-
-    #binding.pry
-
-    self.trivia_all
-
-
 end
 
 
