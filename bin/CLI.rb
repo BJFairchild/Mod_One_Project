@@ -3,18 +3,20 @@ require_relative '../config/environment'
 class CLI
 
     def self.run
+        puts
         puts "Welcome to Trivia!"
         puts "Have you played before (y/n)?"
         played_before= STDIN.gets.chomp
         if played_before ==("y" || "yes")
             puts "Awesome! Face recognition is having technical difficulties today. Please give us your first and last name :)"
             name_input= STDIN.gets.chomp
-            User.find_by(name: name_input)
+            $current_user = User.find_by(name: name_input)
         elsif played_before == ("n" || "no")
             puts "Well what's that first and last name then?"
             new_user_input= STDIN.gets.chomp
             $current_user= User.create(name: new_user_input)
         else
+            puts
             puts "*Does not compute*"
             self.run
         end
@@ -25,6 +27,7 @@ class CLI
             choice = STDIN.gets.chomp
             # exit
             if choice == "0"
+                puts "Maybe next time..."
                 is_running = false
             # elsif choice == "1" || choice == "easy"
             #     self.trivia_easy
@@ -33,6 +36,8 @@ class CLI
             # elsif choice == "3" || choice == "hard"
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
+                puts "Great choice! Let's test that brain."
+                $current_game = Game.create(user_id: $current_user.id, total_score: 0)
                 self.trivia_all
             else
                 puts "Invalid choice."
@@ -43,7 +48,7 @@ class CLI
     def self.main_menu
         puts "What would you like to do?"
         puts
-        # puts "0. exit"
+        puts "0. exit"
         # puts "1. easy"
         # puts "2. medium"
         # puts "3. hard"
@@ -67,7 +72,7 @@ class CLI
     # end
 
     def self.trivia_all
-        20.times do
+        4.times do
             current_q= Question.all.sample
             #binding.pry
             question_arr= [current_q.correct_answer,
@@ -105,11 +110,14 @@ class CLI
     end
 
     def self.end_menu
-        puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true).length} out of 20!" ### Map this to game table
+        $current_game.total_score = Session.where(user_id: $current_user.id, point_flag: true).length
+        
+        puts "Congratulations! Your score was #{$current_game.total_score} out of 20!" ### Map this to game table
 
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
 
         sleep(3)
+        puts
         puts "1. Play again!"
         puts
         puts "2. Exit"
