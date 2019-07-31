@@ -1,4 +1,5 @@
 puts "environment"
+require 'pry'
 
 require 'bundler'
 Bundler.require
