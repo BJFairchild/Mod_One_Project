@@ -5,9 +5,6 @@ require_relative '../config/environment'
 class CLI
     def self.run
         puts "Welcome to Trivia!"
-<<<<<<< HEAD
-        puts
-=======
         puts "Have you played before (y/n)?"
         played_before= STDIN.gets.chomp
         if played=("y" || "yes")
@@ -17,12 +14,11 @@ class CLI
         elsif played = ("n" || "no")
             puts "Well what's that first and last name then?"
             new_user_input= STDIN.gets.chomp
-            User.create(name :new_user_input)
+            User.create(name: new_user_input)
         else
             puts "*Does not compute*"
             self.run
         end
->>>>>>> e377a784253d7cd702c2209c2621023f78f7c38f
 
         is_running = true
         while is_running
@@ -72,57 +68,6 @@ class CLI
     # end
 
     def self.trivia_all
-<<<<<<< HEAD
-        puts
-        x = Question.all.sample
-        ca = x.correct_answer
-        ia1 = x.incorrect_answer
-        ia2 = x.incorrect_answer_two
-        ia3 = x.incorrect_answer_three
-        current_question_array = []
-        current_question_array << ca
-        current_question_array << ia1
-        current_question_array << ia2
-        current_question_array << ia3
-        answers_list = current_question_array.shuffle
-        a1 = answers_list[0]
-        a2 = answers_list[1]
-        a3 = answers_list[2]
-        a4 = answers_list[3]
-        puts x.question_text
-
-        puts a1
-        puts a2
-        puts a3
-        puts a4
-
-        user_answer = STDIN.gets.chomp
-        binding.pry
-    end
-
-    
-
-
-
-    # def self.randomize_question
-    #     x = Question.all.sample
-    #     ca = x.correct_answer
-    #     ia1 = x.incorrect_answer
-    #     ia2 = x.incorrect_answer_two
-    #     ia3 = x.incorrect_answer_three
-    #     current_question_array = []
-    #     current_question_array << ca
-    #     current_question_array << ia1
-    #     current_question_array << ia2
-    #     current_question_array << ia3
-    #     answers_list = current_question_array.shuffle
-    #     a1 = answers_list[0]
-    #     a2 = answers_list[1]
-    #     a3 = answers_list[2]
-    #     a4 = answers_list[3]
-    # end
-
-=======
         current_q= Question.all.sample
         #binding.pry
         question_arr= [current_q.correct_answer,
@@ -157,7 +102,6 @@ class CLI
     self.trivia_all
 
 
->>>>>>> e377a784253d7cd702c2209c2621023f78f7c38f
 end
 
     
