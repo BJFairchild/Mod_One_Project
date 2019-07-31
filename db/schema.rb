@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 9) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "title"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 8) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
   end
 
 end
