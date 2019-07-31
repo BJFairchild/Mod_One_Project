@@ -107,9 +107,9 @@ class CLI
     def self.end_menu
         puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true).length} out of 20!" ### Map this to game table
 
-        puts "Your historic ratio is :#{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
+        puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
 
-        sleep(1)
+        sleep(3)
         puts "1. Play again!"
         puts
         puts "2. Exit"
@@ -119,7 +119,7 @@ class CLI
     end
 
 
-    self.trivia_all
+    binding.pry
 
 
 end
