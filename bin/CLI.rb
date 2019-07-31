@@ -32,7 +32,7 @@ class CLI
             #     self.trivia_medium
             # elsif choice == "3" || choice == "hard"
             #     self.trivia_hard
-            elsif choice == "4" || choice == "surprise me"
+            elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 self.trivia_all
             else
                 puts "Invalid choice."
@@ -47,7 +47,7 @@ class CLI
         # puts "1. easy"
         # puts "2. medium"
         # puts "3. hard"
-        puts "4. surprise me"
+        puts "1. Let's play!"
         puts
     end
 
@@ -67,37 +67,57 @@ class CLI
     # end
 
     def self.trivia_all
-        current_q= Question.all.sample
-        #binding.pry
-        question_arr= [current_q.correct_answer,
-            current_q.incorrect_answer,
-            current_q.incorrect_answer_two,
-            current_q.incorrect_answer_three]
-        final_arr= question_arr.shuffle
-        correct_index= final_arr.index do |ques|
-            ques.include?(current_q.correct_answer)
+        20.times do
+            current_q= Question.all.sample
+            #binding.pry
+            question_arr= [current_q.correct_answer,
+                current_q.incorrect_answer,
+                current_q.incorrect_answer_two,
+                current_q.incorrect_answer_three]
+            final_arr= question_arr.shuffle
+            correct_index= final_arr.index do |ques|
+                ques.include?(current_q.correct_answer)
+            end
+
+            puts current_q.question_text
+            puts
+            puts final_arr[0]
+            puts final_arr[1]
+            puts final_arr[2]
+            puts final_arr[3]
+            chosen= STDIN.gets.chomp.to_i
+            if chosen == (correct_index +1)
+                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true)
+                puts "That's correct! Next question!"
+                puts
+            else puts "Wow you're dumb. The answer was obviously #{current_q.correct_answer}."
+                puts
+                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false)
+            end
+            
         end
 
-        puts current_q.question_text
-        puts final_arr[0]
-        puts final_arr[1]
-        puts final_arr[2]
-        puts final_arr[3]
-        chosen= STDIN.gets.chomp.to_i
-        if chosen == (correct_index +1)
-            Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true)
-            puts "added point flag"
-        else puts "did not add flag"
-            Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false)
-        end
-        puts "chosen value"
-        puts chosen
-        puts "correct index"
-        puts correct_index
-        
+        self.end_menu
+
+    
+        binding.pry
+            
     end
 
-    binding.pry
+    def self.end_menu
+        puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true).length} out of 20!" ### Map this to game table
+
+        puts "Your historic ratio is :#{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
+
+        sleep(1)
+        puts "1. Play again!"
+        puts
+        puts "2. Exit"
+        end_choice = STDIN.gets.chomp
+
+        binding.pry
+    end
+
 
     self.trivia_all
 
