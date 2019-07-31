@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 10) do
+ActiveRecord::Schema.define(version: 12) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "title"
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "user_id"
     t.integer "total_score"
   end
 
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 10) do
     t.integer "user_id"
     t.integer "question_id"
     t.boolean "point_flag"
+    t.integer "game_id"
   end
 
   create_table "users", force: :cascade do |t|

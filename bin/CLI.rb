@@ -72,7 +72,7 @@ class CLI
     # end
 
     def self.trivia_all
-        4.times do
+        10.times do
             current_q= Question.all.sample
             #binding.pry
             question_arr= [current_q.correct_answer,
@@ -110,11 +110,13 @@ class CLI
     end
 
     def self.end_menu
+        binding.pry
         $current_game.total_score = Session.where(user_id: $current_user.id, point_flag: true).length
         
         puts "Congratulations! Your score was #{$current_game.total_score} out of 20!" ### Map this to game table
 
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
+        binding.pry
 
         sleep(3)
         puts
