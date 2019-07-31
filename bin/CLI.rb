@@ -1,19 +1,19 @@
 require_relative '../config/environment'
 #TRIVIA_API = "https://opentdb.com/api.php?amount=1&#difficulty=easy&type=multiple"
 class CLI
+
     def self.run
         puts "Welcome to Trivia!"
         puts "Have you played before (y/n)?"
         played_before= STDIN.gets.chomp
-        if played=("y" || "yes")
+        if played_before ==("y" || "yes")
             puts "Awesome! Face recognition is having technical difficulties today. Please give us your first and last name :)"
             name_input= STDIN.gets.chomp
             User.find_by(name: name_input)
-        elsif played = ("n" || "no")
+        elsif played_before == ("n" || "no")
             puts "Well what's that first and last name then?"
             new_user_input= STDIN.gets.chomp
-            User.create(name: new_user_input)
-            binding.pry
+            $current_user= User.create(name: new_user_input)
         else
             puts "*Does not compute*"
             self.run
@@ -85,9 +85,10 @@ class CLI
         puts final_arr[3]
         chosen= STDIN.gets.chomp.to_i
         if chosen == (correct_index +1)
-            #Session.new(3, current_q.id, true)
+            Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true)
             puts "added point flag"
         else puts "did not add flag"
+            Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false)
         end
         puts "chosen value"
         puts chosen
@@ -95,6 +96,12 @@ class CLI
         puts correct_index
         
     end
+
+    binding.pry
+
+    self.trivia_all
+
+
 end
 
 
