@@ -37,7 +37,7 @@ class CLI
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
-                $current_game = Game.create(user_id: $current_user.id, total_score: 0)
+                $current_game = Game.create(total_score: 0)
                 self.trivia_all
             else
                 puts "Invalid choice."
@@ -72,7 +72,7 @@ class CLI
     # end
 
     def self.trivia_all
-        10.times do
+        20.times do
             current_q= Question.all.sample
             #binding.pry
             question_arr= [current_q.correct_answer,
@@ -92,12 +92,12 @@ class CLI
             puts final_arr[3]
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
-                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true)
+                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
                 puts "That's correct! Next question!"
                 puts
             else puts "Wow you're dumb. The answer was obviously #{current_q.correct_answer}."
                 puts
-                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false)
+                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
             end
             
         end
@@ -111,9 +111,9 @@ class CLI
 
     def self.end_menu
         binding.pry
-        $current_game.total_score = Session.where(user_id: $current_user.id, point_flag: true).length
+        $current_game.update_column(:total_score, Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length)
         
-        puts "Congratulations! Your score was #{$current_game.total_score} out of 20!" ### Map this to game table
+        puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length} out of 20!"
 
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
         binding.pry
