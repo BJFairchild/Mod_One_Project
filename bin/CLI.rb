@@ -4,33 +4,36 @@ require_relative './api_communicator'
 class CLI
 
     def self.run
+        sleep(1)
+        #puts `clear`
         puts
         puts "Welcome to Trivia!"
-        puts "Have you played before (y/n)?"
-        played_before= STDIN.gets.chomp
-        if played_before ==("y" || "yes")
-            puts "Awesome! Face recognition is having technical difficulties today. Please give us your first and last name :)"
-            name_input= STDIN.gets.chomp
-            if name_input == User.find_by(name: name_input)
-                $current_user = User.find_by(name: name_input)
-            else
-                puts "Writing comprehension 101. Spell your name right."
-                self.run
-            end
-        elsif played_before == ("n" || "no")
-            puts "Well what's that first and last name then?"
-            new_user_input= STDIN.gets.chomp
-            $current_user= User.create(name: new_user_input)
-        else
-            puts
-            puts "*Does not compute*"
-            self.run
-        end
+        puts "Please enter your name."
+        # played_before= STDIN.gets.chomp.downcase
+        # if played_before ==("y" || "yes")
+        #     puts "Awesome! Face recognition is having technical difficulties today. Please give us your first and last name."
+        name_input= STDIN.gets.chomp.downcase
+        $current_user = User.find_or_create_by(name: name_input)
+            # if name_input == User.find_by(name: name_input).name
+            #     $current_user = User.find_by(name: name_input)
+            # else
+            #     puts "If you can't spell your name correctly, we're going to have problems. Please try again."
+            #     self.run
+            # end
+        # elsif played_before == ("n" || "no")
+        #     puts "Well what's that first and last name then?"
+        #     new_user_input= STDIN.gets.chomp.downcase
+        #     $current_user= User.create(name: new_user_input)
+        # else
+        #     puts
+        #     puts "*Does not compute*"
+        #     self.run
+        # end
 
         is_running = true
         while is_running
             self.main_menu
-            choice = STDIN.gets.chomp
+            choice = STDIN.gets.chomp.downcase
             # exit
             if choice == "2"
                 puts "Maybe next time..."
@@ -43,15 +46,18 @@ class CLI
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
+                sleep(1)
                 $current_game = Game.create(total_score: 0)
                 self.trivia_all
             else
                 puts "Invalid choice."
+                sleep(1)
             end
         end
     end
 
     def self.main_menu
+        puts `clear`
         puts "What would you like to do?"
         puts
         puts "1. Let's play!"
@@ -89,6 +95,7 @@ class CLI
             correct_index= final_arr.index do |ques|
                 ques.include?(current_q.correct_answer)
             end
+            puts `clear`
 
             puts current_q.question_text
             puts
@@ -96,16 +103,25 @@ class CLI
             puts "2. #{final_arr[1]}"
             puts "3. #{final_arr[2]}"
             puts "4. #{final_arr[3]}"
-            insults= ["Are you trying?", "Bad day?", "Go pull a Gordon Ramsey API.", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in the person you are.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
+            insults= ["Are you trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
                 puts "That's correct! Next question!"
                 puts
+                sleep(1)
+            elsif chosen > 4
+                puts "That's not even a valid option... WRONG!"
+                Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
+                sleep(1)
+            # elsif chosen.is_a?(Integer) == false
+            #     puts "That's not even a number! WRONG!"
+            #     Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
             else puts
-                puts "#{insults.sample} The answer was obviously #{current_q.correct_answer}."
+                puts "#{insults.sample} The correct answer was #{current_q.correct_answer}."
                 puts
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
+                sleep(3)
             end
             
         end
@@ -118,6 +134,8 @@ class CLI
     end
 
     def self.end_menu
+        sleep(1)
+        puts `clear`
         $current_game.update_column(:total_score, Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length)
         
         puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length} out of 20!"
@@ -131,7 +149,7 @@ class CLI
         puts
         puts "1. Play again!"
         puts "2. Exit"
-        end_choice = STDIN.gets.chomp
+        end_choice = STDIN.gets.chomp.downcase
         if end_choice == "1"
             self.run
         elsif end_choice == "2"
@@ -145,20 +163,20 @@ class CLI
     
     end
 
-    def high_score
+    def self.high_score
         high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
             binding.pry
         end
         puts "Your highest score is: #{high}"
     end
 
-    def high_scores_list
+    def self.high_scores_list
         ordered_list= Game.all.order(:total_score)
         top_five=ordered_list.limit(5)
         return top_five
     end
 
-    def high_scores_ids
+    def self.high_scores_ids
         i=0
         while i <5
             Session.all.find do |sessions|
