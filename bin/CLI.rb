@@ -145,6 +145,13 @@ class CLI
         puts "Your highest score is: #{high}"
     end
 
+    def high_score
+        high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
+        end
+        puts "Your highest score is: #{high}"
+    end
+
+
 
     #binding.pry
 

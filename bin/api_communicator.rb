@@ -11,6 +11,7 @@ class APICommunicator
         end
     end
     
+
     def self.generate     
             m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
 
@@ -33,7 +34,8 @@ class APICommunicator
             #     ques.incorrect_answer_three = m_q["results"][0]["incorrect_answers"][2],
             #     ques.catagory = m_q["results"][0]["category"],
             #     ques.difficulty = m_q["results"][0]["difficulty"]
-            #end
+            # )
+            # end
 end
 binding.pry
 0
