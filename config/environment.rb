@@ -1,4 +1,4 @@
-puts "environment"
+
 require 'pry'
 
 require 'bundler'

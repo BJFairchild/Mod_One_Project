@@ -90,7 +90,7 @@ class CLI
             puts "2. #{final_arr[1]}"
             puts "3. #{final_arr[2]}"
             puts "4. #{final_arr[3]}"
-            insults= ["Wow, you're dumb.", "Bad day?", "Go pull a Gordon Ramsey API.", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Dear God, what is it like in your funny little brain? It must be so boring.", "Mr. Rogers would be disappointed in the person you are.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
+            insults= ["Are you trying?", "Bad day?", "Go pull a Gordon Ramsey API.", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in the person you are.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
@@ -138,7 +138,7 @@ class CLI
     end
 
 
-    #binding.pry
+    binding.pry
 
 
 end
