@@ -15,11 +15,11 @@ class APICommunicator
             m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
 
             Question.create(
-                question_text: m_q["results"][0]["question"].gsub("&quot;", '"').gsub("&#039;", "'"), 
-                correct_answer: m_q["results"][0]["correct_answer"].gsub("&quot;", '"').gsub("&#039;", "'"), 
-                incorrect_answer: m_q["results"][0]["incorrect_answers"][0].gsub("&quot;", '"').gsub("&#039;", "'"), 
-                incorrect_answer_two: m_q["results"][0]["incorrect_answers"][1].gsub("&quot;", '"').gsub("&#039;", "'"), 
-                incorrect_answer_three: m_q["results"][0]["incorrect_answers"][2].gsub("&quot;", '"').gsub("&#039;", "'"), 
+                question_text: m_q["results"][0]["question"].gsub("&quot;", '"').gsub("&#039;", "'").gsub("&eacute;", "e").gsub("&amp;", "&").gsub("&oacute;", "o").gsub("&aacute;", "a").gsub("&ouml;", "o").gsub("&aring;", "a").gsub("&auml;", "a").gsub("&ntilde;", "n").gsub("&shy;", ""), 
+                correct_answer: m_q["results"][0]["correct_answer"].gsub("&quot;", '"').gsub("&#039;", "'").gsub("&eacute;", "e").gsub("&amp;", "&").gsub("&oacute;", "o").gsub("&aacute;", "a").gsub("&ouml;", "o").gsub("&aring;", "a").gsub("&auml;", "a").gsub("&ntilde;", "n").gsub("&shy;", ""), 
+                incorrect_answer: m_q["results"][0]["incorrect_answers"][0].gsub("&quot;", '"').gsub("&#039;", "'").gsub("&eacute;", "e").gsub("&amp;", "&").gsub("&oacute;", "o").gsub("&aacute;", "a").gsub("&ouml;", "o").gsub("&aring;", "a").gsub("&auml;", "a").gsub("&ntilde;", "n").gsub("&shy;", ""), 
+                incorrect_answer_two: m_q["results"][0]["incorrect_answers"][1].gsub("&quot;", '"').gsub("&#039;", "'").gsub("&eacute;", "e").gsub("&amp;", "&").gsub("&oacute;", "o").gsub("&aacute;", "a").gsub("&ouml;", "o").gsub("&aring;", "a").gsub("&auml;", "a").gsub("&ntilde;", "n").gsub("&shy;", ""), 
+                incorrect_answer_three: m_q["results"][0]["incorrect_answers"][2].gsub("&quot;", '"').gsub("&#039;", "'").gsub("&eacute;", "e").gsub("&amp;", "&").gsub("&oacute;", "o").gsub("&aacute;", "a").gsub("&ouml;", "o").gsub("&aring;", "a").gsub("&auml;", "a").gsub("&ntilde;", "n").gsub("&shy;", ""), 
                 catagory: m_q["results"][0]["category"],
                 difficulty: m_q["results"][0]["difficulty"]
                 )
