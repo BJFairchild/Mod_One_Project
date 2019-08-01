@@ -103,6 +103,13 @@ class CLI
             puts "2. #{final_arr[1]}"
             puts "3. #{final_arr[2]}"
             puts "4. #{final_arr[3]}"
+            puts
+            puts
+            puts
+            puts "The current category is: #{current_q.catagory}"
+            puts
+            puts "ART PLACEHOLDER"
+            puts
             insults= ["Are you trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
