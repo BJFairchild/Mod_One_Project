@@ -26,7 +26,7 @@ class CLI
             self.main_menu
             choice = STDIN.gets.chomp
             # exit
-            if choice == "0"
+            if choice == "1"
                 puts "Maybe next time..."
                 is_running = false
             # elsif choice == "1" || choice == "easy"
@@ -35,7 +35,7 @@ class CLI
             #     self.trivia_medium
             # elsif choice == "3" || choice == "hard"
             #     self.trivia_hard
-            elsif choice == "1" || choice == "Let's play!"  || choice == "play"
+            elsif choice == "2" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
                 $current_game = Game.create(total_score: 0)
                 self.trivia_all
@@ -48,11 +48,11 @@ class CLI
     def self.main_menu
         puts "What would you like to do?"
         puts
-        puts "0. exit"
+        puts "1. Exit"
         # puts "1. easy"
         # puts "2. medium"
         # puts "3. hard"
-        puts "1. Let's play!"
+        puts "2. Let's play!"
         puts
     end
 
@@ -86,10 +86,10 @@ class CLI
 
             puts current_q.question_text
             puts
-            puts final_arr[0]
-            puts final_arr[1]
-            puts final_arr[2]
-            puts final_arr[3]
+            puts "1. #{final_arr[0]}"
+            puts "2. #{final_arr[1]}"
+            puts "3. #{final_arr[2]}"
+            puts "4. #{final_arr[3]}"
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
@@ -110,7 +110,6 @@ class CLI
     end
 
     def self.end_menu
-        binding.pry
         $current_game.update_column(:total_score, Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length)
         
         puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length} out of 20!"
@@ -121,9 +120,17 @@ class CLI
         sleep(3)
         puts
         puts "1. Play again!"
-        puts
         puts "2. Exit"
         end_choice = STDIN.gets.chomp
+        if end_choice == "1"
+            self.run
+        elsif end_choice == "2"
+            puts "Thanks for playing!"
+            is_running = false
+        else
+            puts "Press 1 or 2. Reading comprehension 101."
+            self.end_menu
+        end
 
         binding.pry
     end
