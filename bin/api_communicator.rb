@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 require 'require_all'
+=======
+#require_relative '../config/environment'
+require 'pry'
+require 'json'
+require 'rest-client'
+require_relative '../lib/question.rb'
+>>>>>>> f7ecad7d2802e5027e9d93c0d77a3565ab1c889c
 
 class APICommunicator
     def self.load
@@ -9,41 +17,19 @@ class APICommunicator
     
 
     def self.generate     
-        m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
-        #binding.pry
-        Question.create(
-            question_text: m_q["results"][0]["question"],
-            correct_answer: m_q["results"][0]["correct_answer"],
-            incorrect_answer: m_q["results"][0]["incorrect_answers"][0], 
-            incorrect_answer_two: m_q["results"][0]["incorrect_answers"][1],
-            incorrect_answer_three: m_q["results"][0]["incorrect_answers"][2],
-            catagory: m_q["results"][0]["category"],
-            difficulty: m_q["results"][0]["difficulty"]
-            )
-            
-end
+            m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
 
-
-
-
-
-
-    ########################taking out quotes with gsub################################################
-    # def self.generate     
-    #         m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
-            
-            # Question.create(
-            #     question_text: (m_q["results"][0]["question"]).gsub("&quot;", "\""),
-            #     correct_answer: (m_q["results"][0]["correct_answer"]).gsub("&quot;", "\""),
-            #     incorrect_answer: (m_q["results"][0]["incorrect_answers"][0]).gsub("&quot;", "\""), 
-            #     incorrect_answer_two: (m_q["results"][0]["incorrect_answers"][1]).gsub("&quot;", "\""),
-            #     incorrect_answer_three: (m_q["results"][0]["incorrect_answers"][2]).gsub("&quot;", "\"")
-            # )
-                # ,
-                # # catagory: m_q["results"][0]["category"],
-                # difficulty: m_q["results"][0]["difficulty"]
-                # )
-    # end
+            Question.create(
+                question_text: m_q["results"][0]["question"].gsub("&quot;", '"').gsub("&#039;", "'"), 
+                correct_answer: m_q["results"][0]["correct_answer"].gsub("&quot;", '"').gsub("&#039;", "'"), 
+                incorrect_answer: m_q["results"][0]["incorrect_answers"][0].gsub("&quot;", '"').gsub("&#039;", "'"), 
+                incorrect_answer_two: m_q["results"][0]["incorrect_answers"][1].gsub("&quot;", '"').gsub("&#039;", "'"), 
+                incorrect_answer_three: m_q["results"][0]["incorrect_answers"][2].gsub("&quot;", '"').gsub("&#039;", "'"), 
+                catagory: m_q["results"][0]["category"],
+                difficulty: m_q["results"][0]["difficulty"]
+                )
+                
+    end
 
             # Question.find_or_create_by(question_text: m_q["results"][0]["question"]) do |ques|
             #     ques.correct_answer = m_q["results"][0]["correct_answer"],
@@ -55,6 +41,5 @@ end
             # )
             # end
 end
-
-APICommunicator.load
-APICommunicator.generate
+binding.pry
+0
