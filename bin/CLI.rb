@@ -119,6 +119,8 @@ class CLI
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
         #binding.pry
 
+        puts high_score
+
         sleep(3)
         puts
         puts "1. Play again!"
@@ -137,6 +139,12 @@ class CLI
     
     end
 
+    def high_score
+        high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
+        end
+        puts "Your highest score is: #{high}"
+    end
+
 
     #binding.pry
 
@@ -144,4 +152,3 @@ class CLI
 end
 
 
-CLI.run
