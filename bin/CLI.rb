@@ -26,7 +26,7 @@ class CLI
             self.main_menu
             choice = STDIN.gets.chomp
             # exit
-            if choice == "1"
+            if choice == "2"
                 puts "Maybe next time..."
                 is_running = false
             # elsif choice == "1" || choice == "easy"
@@ -35,7 +35,7 @@ class CLI
             #     self.trivia_medium
             # elsif choice == "3" || choice == "hard"
             #     self.trivia_hard
-            elsif choice == "2" || choice == "Let's play!"  || choice == "play"
+            elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
                 $current_game = Game.create(total_score: 0)
                 self.trivia_all
@@ -48,11 +48,11 @@ class CLI
     def self.main_menu
         puts "What would you like to do?"
         puts
-        puts "1. Exit"
+        puts "1. Let's play!"
         # puts "1. easy"
         # puts "2. medium"
         # puts "3. hard"
-        puts "2. Let's play!"
+        puts "2. Exit."
         puts
     end
 
@@ -90,13 +90,14 @@ class CLI
             puts "2. #{final_arr[1]}"
             puts "3. #{final_arr[2]}"
             puts "4. #{final_arr[3]}"
-            insults= ["Wow, you're dumb.", "Bad day?", "Go pull a Gordon Ramsy API.", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Dear God, what is it like in your funny little brains? It must be so boring." , "Mr. Rogers would be disappointed in the person you are.", "Yelp called and wants its prize employee back."]
+            insults= ["Wow, you're dumb.", "Bad day?", "Go pull a Gordon Ramsey API.", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Dear God, what is it like in your funny little brain? It must be so boring.", "Mr. Rogers would be disappointed in the person you are.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
                 puts "That's correct! Next question!"
                 puts
-            else puts "#{insults.sample}. The answer was obviously #{current_q.correct_answer}."
+            else puts
+                puts "#{insults.sample} The answer was obviously #{current_q.correct_answer}."
                 puts
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
             end
@@ -106,7 +107,7 @@ class CLI
         self.end_menu
 
     
-        binding.pry
+        #binding.pry
             
     end
 
@@ -116,7 +117,7 @@ class CLI
         puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length} out of 20!"
 
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
-        binding.pry
+        #binding.pry
 
         sleep(3)
         puts
@@ -133,13 +134,14 @@ class CLI
             self.end_menu
         end
 
-        binding.pry
+    
     end
 
 
-    binding.pry
+    #binding.pry
 
 
 end
 
 
+CLI.run
