@@ -7,3 +7,4 @@ gem 'json'
 gem 'require_all'
 gem "sinatra-activerecord"
 gem "sqlite3"
+gem 'pry-byebug'

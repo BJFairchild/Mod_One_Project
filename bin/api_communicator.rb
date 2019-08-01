@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-require 'require_all'
-=======
 #require_relative '../config/environment'
 require 'pry'
 require 'json'
 require 'rest-client'
 require_relative '../lib/question.rb'
->>>>>>> f7ecad7d2802e5027e9d93c0d77a3565ab1c889c
 
 class APICommunicator
     def self.load
@@ -41,5 +37,5 @@ class APICommunicator
             # )
             # end
 end
-binding.pry
-0
+
+
