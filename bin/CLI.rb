@@ -105,8 +105,6 @@ class CLI
 
         self.end_menu
 
-    
-        binding.pry
             
     end
 
@@ -116,6 +114,8 @@ class CLI
         puts "Congratulations! Your score was #{Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length} out of 20!"
 
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
+
+        puts high_score
         binding.pry
 
         sleep(3)
@@ -133,11 +133,18 @@ class CLI
             self.end_menu
         end
 
-        binding.pry
+
+    end
+
+    def high_score
+        high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
+        end
+        puts "Your highest score is: #{high}"
     end
 
 
-    binding.pry
+
+ 
 
 
 end
