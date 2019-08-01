@@ -9,6 +9,7 @@ class APICommunicator
     
     def self.generate     
             m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
+            
             Question.create(
                 question_text: m_q["results"][0]["question"], 
                 correct_answer: m_q["results"][0]["correct_answer"], 

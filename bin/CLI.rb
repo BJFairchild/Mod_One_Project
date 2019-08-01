@@ -138,7 +138,7 @@ class CLI
     end
 
 
-    binding.pry
+    #binding.pry
 
 
 end
