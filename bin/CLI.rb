@@ -11,7 +11,12 @@ class CLI
         if played_before ==("y" || "yes")
             puts "Awesome! Face recognition is having technical difficulties today. Please give us your first and last name :)"
             name_input= STDIN.gets.chomp
-            $current_user = User.find_by(name: name_input)
+            if name_input == User.find_by(name: name_input)
+                $current_user = User.find_by(name: name_input)
+            else
+                puts "Writing comprehension 101. Spell your name right."
+                self.run
+            end
         elsif played_before == ("n" || "no")
             puts "Well what's that first and last name then?"
             new_user_input= STDIN.gets.chomp
@@ -142,15 +147,38 @@ class CLI
 
     def high_score
         high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
+            binding.pry
         end
         puts "Your highest score is: #{high}"
     end
 
-    def high_score
-        high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
-        end
-        puts "Your highest score is: #{high}"
+    def high_scores_list
+        ordered_list= Game.all.order(:total_score)
+        top_five=ordered_list.limit(5)
+        return top_five
     end
+
+    def high_scores_ids
+        i=0
+        while i <5
+            Session.all.find do |sessions|
+                sessions.game_id == high_scores_list[i]
+                i+=1
+            end
+        end
+        return high_ids
+    end
+
+    def high_scores_names
+        names=User.all.collect do |users|
+            users.user_id == high_scores_ids
+        end.unique
+        return names.name
+    end
+
+
+
+
 
 
 
