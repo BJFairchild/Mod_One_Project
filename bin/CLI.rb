@@ -1,4 +1,5 @@
 require_relative '../config/environment'
+require_relative './api_communicator'
 #TRIVIA_API = "https://opentdb.com/api.php?amount=1&#difficulty=easy&type=multiple"
 class CLI
 
