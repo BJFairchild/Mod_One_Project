@@ -90,12 +90,13 @@ class CLI
             puts final_arr[1]
             puts final_arr[2]
             puts final_arr[3]
+            insults= ["Wow, you're dumb.", "Bad day?", "Go pull a Gordon Ramsy API.", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Dear God, what is it like in your funny little brains? It must be so boring." , "Mr. Rogers would be disappointed in the person you are.", "Yelp called and wants its prize employee back."]
             chosen= STDIN.gets.chomp.to_i
             if chosen == (correct_index +1)
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true)
                 puts "That's correct! Next question!"
                 puts
-            else puts "Wow you're dumb. The answer was obviously #{current_q.correct_answer}."
+            else puts "#{insults.sample}. The answer was obviously #{current_q.correct_answer}."
                 puts
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false)
             end
