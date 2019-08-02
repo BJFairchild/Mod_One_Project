@@ -193,7 +193,7 @@ class CLI
 
     
     end
-    binding.pry
+    
 
     def self.high_scores_list
         top_five= Game.all.order(total_score: :desc).limit(5)
