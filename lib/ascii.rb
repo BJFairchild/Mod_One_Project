@@ -7,7 +7,7 @@ def general_knowledge
     puts "(_-  _  ~_-~~~~`,  ,' )    "
     puts "  `~ -^(    __;-,((()))    "
     puts "        ~~~~ {_ -_(())    "
-    puts "               `\  }    "
+    puts "               `\\  }    "    
     puts "                 { }       "
 end
 
