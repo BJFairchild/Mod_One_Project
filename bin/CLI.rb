@@ -46,7 +46,7 @@ class CLI
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
-                $current_game = Game.create(total_score: 0, user_id: $current_user, user_name: $current_user.name)
+                $current_game = Game.create(total_score: 0, user_id: $current_user.id, user_name: $current_user.name)
                 self.trivia_all
             else
                 puts "Invalid choice."
@@ -175,7 +175,8 @@ class CLI
     def self.high_score
         high = Game.where(user_id: $current_user.id).max_by do |max| max.total_score
         end
-        puts "Your highest score is: #{high}"
+        puts "Your highest score is: #{high.total_score}"
+        binding.pry
     end
 
 
