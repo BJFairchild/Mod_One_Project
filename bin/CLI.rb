@@ -31,14 +31,14 @@ class CLI
         #     self.run
         # end
 
-        is_running = true
-        while is_running
+        $is_running = true
+        while $is_running
             self.main_menu
             choice = STDIN.gets.chomp.downcase
             # exit
             if choice == "2"
                 puts "Maybe next time..."
-                is_running = false
+                $is_running = false
             # elsif choice == "1" || choice == "easy"
             #     self.trivia_easy
             # elsif choice == "2" || choice == "medium"
@@ -195,7 +195,7 @@ class CLI
             self.run
         elsif end_choice == "2"
             puts "Thanks for playing!"
-            is_running = false
+            $is_running = false
         else
             puts "Press 1 or 2. Reading comprehension 101."
             self.end_menu
