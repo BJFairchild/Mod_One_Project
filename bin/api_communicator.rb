@@ -1,4 +1,4 @@
-puts "API"
+
 require_relative '../config/environment'
 require 'pry'
 require 'json'

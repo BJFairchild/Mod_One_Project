@@ -1,4 +1,4 @@
-puts "environment"
+
 require 'pry'
 require 'json'
 require 'rest-client'
