@@ -86,6 +86,7 @@ def tv
     puts "                  |-._,-'  |"
     puts "                  | |    _,'"
     puts "                  '-|_,-'   "
+end
 
  def video_games
     puts "     ________________"
