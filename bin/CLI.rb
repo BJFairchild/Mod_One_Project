@@ -113,7 +113,7 @@ class CLI
             elsif  current_q.catagory == "Sports"
                 sports
             elsif current_q.catagory == "Geography"
-                geography
+                geography_two
             elsif current_q.catagory == "Politics"
                 politics
             elsif current_q.catagory == "Art"
