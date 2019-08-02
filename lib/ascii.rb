@@ -116,7 +116,7 @@ def tv
     puts "                  '-|_,-'   "
 end
 
-end
+
 
 def video_games
     puts "     ________________"
@@ -171,4 +171,53 @@ puts"                  (vvv(VVV)(VVV)vvv)   "
 
 
 end
+
+def sports
+puts"                                           o__ "
+puts"     o       o     _ o     _ o     o_     /       _ o"
+puts"    /\\    \\_/=    \\_/       /    _/__     '==      /_      o_"
+puts"____>______/________\\______/\\________________________\\____/__,____"
+
+end
+
+def geography
+puts"                  _-o#&&*''''?d:>b\\_"
+puts"             _o/\"`''   '',, dMF9MMMMMHo_"
+puts"           .o&#'        `\"MbHMMMMMMMMMMMHo."
+puts"         .o\"\" '         vodM*$&&HMMMMMMMMMM?."
+puts"        ,'              $M&ood,~'`(&##MMMMMMH\\"
+puts"       /               ,MMMMMMM#b?#bobMMMMHMMML"
+puts"      &              ?MMMMMMMMMMMMMMMMM7MMM$R*Hk"
+puts"     ?$.            :MMMMMMMMMMMMMMMMMMM/HMMM|`*L"
+puts"    |               |MMMMMMMMMMMMMMMMMMMMbMH'   T,"
+puts"    $H#:            `*MMMMMMMMMMMMMMMMMMMMb#}'  `?"
+puts"    ]MMH#             \"\"*\"\"\"\"*#MMMMMMMMMMMMM'    -"
+puts"    MMMMMb_                   |MMMMMMMMMMMP'      :"
+puts"    HMMMMMMMHo                 `MMMMMMMMMT        ."
+puts"    ?MMMMMMMMP                 9MMMMMMMM}         -"
+puts"    -?MMMMMMM                 |MMMMMMMMM?,d-      '"
+puts"     :|MMMMMM-                `MMMMMMMT .M|.      :"
+puts"      .9MMM[                   &MMMMM*' `'       ."
+puts"        :9MMk                 \`MMM#\"            -"
+puts"          &M}                  \`              .-"
+puts"            `&.                             ."
+puts"              `~,  .                     ./"
+puts"                 . _                  .-"
+puts"                   '`--._,dd###pp=\"\"\'"
+
+end
+
+#geography
+
+# mythology
+# science_and_math
+# board_games
+# video_games
+# tv
+# science_and_nature
+# musicals_theater
+# music
+# film
+# books
+# general_knowledge
 
