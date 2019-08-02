@@ -96,7 +96,11 @@ def tv
 #     puts "| /              \ |"
 #     puts "|/                \|"
 #     puts "\"                \""
+<<<<<<< HEAD
 end
+=======
+ end
+>>>>>>> 2db88b85eb7db7b4f91c2272652a5884fa0427f8
 
 
 
