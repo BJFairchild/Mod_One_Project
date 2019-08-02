@@ -124,12 +124,22 @@ class CLI
                 animals
             elsif current_q.catagory == "Science: Gadgets"
                 gadgets
+            elsif current_q.catagory == "Science: Computers"
+                science_and_computers
+            elsif current_q.catagory == "History"
+                history
+            elsif current_q.catagory == "Vehicles"
+                vehicles
+            elsif current_q.catagory == "Entertainment: Comics"
+                entertainment_comics
+            elsif current_q.catagory == "Entertainment: Japanese Anime & Manga"
+                anime_manga
             else current_q.catagory == "Entertainment: Cartoon & Animations"
                 entertainment_cartoons
             end
 
             puts
-            insults= ["Are you trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
+            insults= ["Are you even trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out.", "Penalty for listening to Stan.", "Congratulations on your participant award.", "I have neither the time nor the crayons to explain this to you.", "As an outsider, what is your perspective on intelligence?"]
             chosen= STDIN.gets.chomp.to_i
             while chosen < 1
                 puts "That's not even a number! Are you paying attention?"
@@ -193,7 +203,6 @@ class CLI
 
     
     end
-    
 
     def self.high_scores_list
         top_five= Game.all.order(total_score: :desc).limit(5)
