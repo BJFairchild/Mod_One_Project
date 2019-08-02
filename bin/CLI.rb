@@ -46,8 +46,7 @@ class CLI
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
-                sleep(1)
-                $current_game = Game.create(total_score: 0)
+                $current_game = Game.create(total_score: 0, user_id: $current_user)
                 self.trivia_all
             else
                 puts "Invalid choice."
@@ -150,7 +149,7 @@ class CLI
         puts "Your historic ratio is: #{Session.where(user_id: $current_user.id, point_flag: true).length}/#{Session.where(user_id: $current_user.id).length}"
         #binding.pry
 
-        puts high_score
+        # puts high_score
 
         sleep(3)
         puts
@@ -170,46 +169,57 @@ class CLI
     
     end
 
-    def self.high_score
-        high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
-            binding.pry
-        end
-        puts "Your highest score is: #{high}"
-    end
-
     def self.high_scores_list
-        ordered_list= Game.all.order(:total_score)
-        top_five=ordered_list.limit(5)
-        return top_five
+        #ordered_list= 
+        top_five= Game.all.order(total_score: :desc).limit(5)
     end
 
+    # def self.high_score
+    #     high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
+    #         binding.pry
+    #     end
+    #     puts "Your highest score is: #{high}"
+    # end
+
+    
     def self.high_scores_ids
         i=0
-        while i <5
-            Session.all.find do |sessions|
-                sessions.game_id == high_scores_list[i]
-                i+=1
+        high_ids= []
+        while i < high_scores_list.length
+            session_match = Session.all.find do |sessions|
+                sessions.game_id == high_scores_list[i]["id"]
+            
             end
+            high_ids << session_match
+            i+=1
         end
         return high_ids
     end
-
-    def high_scores_names
-        names=User.all.collect do |users|
-            users.user_id == high_scores_ids
-        end.unique
-        return names.name
+    
+    def self.high_scores_names
+        i=0
+        high_names=[]
+        while i < high_scores_ids.length
+            user_match = User.all.find do |users|
+                users.id == high_scores_ids[i]["user_id"]
+            end
+            i+=1
+            high_names << user_match
+        end
+        binding.pry
+        return high_names
     end
 
 
-
-
-
-
-
-    binding.pry
-
+    def self.best_category
+    end
 
 end
 
+
+# high_scores_ids
+
+CLI.high_scores_ids
+CLI.high_scores_names
+CLI.high_scores_list
 
