@@ -12,7 +12,7 @@ class APICommunicator
         end
     end
     
-
+#puts `clear`
     def self.generate     
             m_q = JSON.parse(RestClient.get("https://opentdb.com/api.php?amount=1&type=multiple"))
 
