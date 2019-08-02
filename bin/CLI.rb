@@ -1,5 +1,6 @@
 require_relative '../config/environment'
 require_relative './api_communicator'
+require_relative '../lib/ascii.rb'
 #TRIVIA_API = "https://opentdb.com/api.php?amount=1&#difficulty=easy&type=multiple"
 class CLI
 
@@ -87,7 +88,46 @@ class CLI
             puts
             puts "The current category is: #{current_q.catagory}"
             puts
-            puts "ART PLACEHOLDER"
+            if current_q.catagory == "General Knowledge"
+                general_knowledge
+            elsif current_q.catagory == "Entertainment: Books"
+                books
+            elsif current_q.catagory == "Entertainment: Film"
+                film
+            elsif current_q.catagory == "Entertainment: Music"
+                music
+            elsif current_q.catagory == "Entertainment: Musicals & Theatres"
+                musicals_theater
+            elsif current_q.catagory == "Science & Nature"
+                science_and_nature
+            elsif current_q.catagory == "Entertainment: Television"
+                tv
+            elsif current_q.catagory == "Entertainment: Video Games"
+                video_games
+            elsif current_q.catagory == "Entertainment: Board Games"
+                board_games
+            elsif current_q.catagory == "Science: Mathematics"
+                science_and_math
+            elsif current_q.catagory == "Mythology"
+                mythology
+            elsif  current_q.catagory == "Sports"
+                sports
+            elsif current_q.catagory == "Geography"
+                geography
+            elsif current_q.catagory == "Politics"
+                politics
+            elsif current_q.catagory == "Art"
+                art
+            elsif current_q.catagory == "Celebrities"
+                celebrities
+            elsif  current_q.catagory == "Animals"
+                animals
+            elsif current_q.catagory == "Science: Gadgets"
+                gadgets
+            else current_q.catagory == "Entertainment: Cartoon & Animations"
+                entertainment_cartoons
+            end
+
             puts
             insults= ["Are you trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
             chosen= STDIN.gets.chomp.to_i
@@ -153,6 +193,7 @@ class CLI
 
     
     end
+    binding.pry
 
     def self.high_scores_list
         top_five= Game.all.order(total_score: :desc).limit(5)
@@ -210,6 +251,3 @@ class CLI
   
 
 end
-CLI.run
-
-
