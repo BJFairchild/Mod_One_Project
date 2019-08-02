@@ -139,7 +139,7 @@ class CLI
             end
 
             puts
-            insults= ["Are you even trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out.", "Penalty for listening to Stan.", "Congratulations on your participant award.", "I have neither the time nor the crayons to explain this to you.", "As an outsider, what is your perspective on intelligence?"]
+            insults= ["Are you even trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out.", "Penalty for listening to Stan.", "Congratulations on your participant award.", "I have neither the time nor the crayons to explain this to you.", "As an outsider, what is your perspective on intelligence?", "Welcome to Seattle-I can see you're from Portland -___-", "Judge Judy wouldn't have ruled in your favor this time, Matt."]
             chosen= STDIN.gets.chomp.to_i
             while chosen < 1
                 puts "That's not even a number! Are you paying attention?"
