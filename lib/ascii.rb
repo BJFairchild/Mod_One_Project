@@ -114,6 +114,7 @@ def tv
     puts "                  |-._,-'  |"
     puts "                  | |    _,'"
     puts "                  '-|_,-'   "
+end
 
 end
 
