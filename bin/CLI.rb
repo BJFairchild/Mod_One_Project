@@ -172,11 +172,11 @@ class CLI
         #binding.pry
     end
 
-    def self.high_score
-        high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
-        end
-        puts "Your highest score is: #{high}"
-    end
+    # def self.high_score
+    #     high= Game.where(user_id: $current_user.id).max_by do |max| max.total_score
+    #     end
+    #     puts "Your highest score is: #{high}"
+    # end
 
 
     ###########################3 hours of work I feel guilty deleting##########################
@@ -219,7 +219,7 @@ class CLI
 
 end
 
-CLI.high_score
-CLI.high_scores_list
+# CLI.high_score
+#CLI.high_scores_list
 
 
