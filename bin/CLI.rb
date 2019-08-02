@@ -4,7 +4,7 @@ require_relative './api_communicator'
 class CLI
 
     def self.run
-        sleep(1)
+        #sleep(1)
         #puts `clear`
         puts
         puts "Welcome to Trivia!"
@@ -46,11 +46,11 @@ class CLI
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
-                $current_game = Game.create(total_score: 0, user_id: $current_user)
+                $current_game = Game.create(total_score: 0, user_id: $current_user, user_name: $current_user.name)
                 self.trivia_all
             else
                 puts "Invalid choice."
-                sleep(1)
+                #sleep(1)
             end
         end
     end
@@ -60,27 +60,9 @@ class CLI
         puts "What would you like to do?"
         puts
         puts "1. Let's play!"
-        # puts "1. easy"
-        # puts "2. medium"
-        # puts "3. hard"
         puts "2. Exit."
         puts
     end
-
-    # def self.trivia_easy
-    #     puts
-    #     puts Question.column_names=question_text.sample
-    # end
-
-    # def self.trivia_medium
-    #     puts
-    #     puts Question.column_names=question_text.sample
-    # end
-
-    # def self.trivia_hard
-    #     puts
-    #     puts Question.column_names=question_text.sample
-    # end
 
     def self.trivia_all
         20.times do
@@ -115,11 +97,11 @@ class CLI
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
                 puts "That's correct! Next question!"
                 puts
-                sleep(1)
+                #sleep(1)
             elsif chosen > 4
                 puts "That's not even a valid option... WRONG!"
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
-                sleep(1)
+                #sleep(1)
             # elsif chosen.is_a?(Integer) == false
             #     puts "That's not even a number! WRONG!"
             #     Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
@@ -127,7 +109,7 @@ class CLI
                 puts "#{insults.sample} The correct answer was #{current_q.correct_answer}."
                 puts
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
-                sleep(3)
+                #sleep(3)
             end
             
         end
@@ -140,7 +122,7 @@ class CLI
     end
 
     def self.end_menu
-        sleep(1)
+        #sleep(1)
         puts `clear`
         $current_game.update_column(:total_score, Session.where(user_id: $current_user.id, point_flag: true, game_id: $current_game.id).length)
         
@@ -158,7 +140,7 @@ class CLI
 
         #binding.pry
 
-        sleep(3)
+        #sleep(3)
         puts
         puts "1. Play again!"
         puts "2. Exit"
@@ -178,12 +160,12 @@ class CLI
 
     def self.high_scores_list
         top_five= Game.all.order(total_score: :desc).limit(5)
-        puts "FIRST PLACE!! #{top_five[0]}"
-        puts "SECOND PLACE! #{top_five[1]}"
-        puts "THIRD: #{top_five[2]}"
-        puts "Fourth place: #{top_five[3]}"
-        puts "FifTH PlAcE: #{top_five[4]}"
-
+        puts "FIRST PLACE!! #{top_five[0].user_name} with #{top_five[0].total_score}"
+        puts "SECOND PLACE! #{top_five[1].user_name} with #{top_five[1].total_score}"
+        puts "THIRD: #{top_five[2].user_name} with #{top_five[2].total_score}"
+        puts "Fourth place: #{top_five[3].user_name} with #{top_five[3].total_score}"
+        puts "FifTH PlAcE: #{top_five[4].user_name} with #{top_five[4].total_score}"
+        #binding.pry
     end
 
     def self.high_score
@@ -192,7 +174,11 @@ class CLI
         puts "Your highest score is: #{high}"
     end
 
-    
+
+    ###########################3 hours of work I feel guilty deleting##########################
+    ###########################################################################################
+    ###########################################################################################
+    ###########################################################################################
     # def self.high_scores_ids
     #     i=0
     #     high_ids= []
@@ -220,17 +206,16 @@ class CLI
     #     binding.pry
     #     return high_names
     # end
+    ###########################3 hours of work I feel guilty deleting##########################
+    ###########################################################################################
+    ###########################################################################################
+    ###########################################################################################
 
-
-    def self.best_category
-    end
+  
 
 end
 
-
-# high_scores_ids
-
-CLI.high_scores_ids
-CLI.high_scores_names
+CLI.high_score
 CLI.high_scores_list
+
 
