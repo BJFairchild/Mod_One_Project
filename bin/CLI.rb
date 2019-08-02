@@ -46,7 +46,7 @@ class CLI
             #     self.trivia_hard
             elsif choice == "1" || choice == "Let's play!"  || choice == "play"
                 puts "Great choice! Let's test that brain."
-                $current_game = Game.create(total_score: 0, user_id: $current_user)
+                $current_game = Game.create(total_score: 0, user_id: $current_user.id)
                 self.trivia_all
             else
                 puts "Invalid choice."
@@ -111,6 +111,10 @@ class CLI
             puts
             insults= ["Are you trying?", "Bad day?", "I think thou never wast where grace was said.", "I'm guessing you weren't burdened with an overabundance of schooling.", "You're impossible to underestimate.", "You're the Yelp of people.", "Mr. Rogers would be disappointed in you.", "Yelp called and wants its prize employee back.", "Not even an assassin would take you out."]
             chosen= STDIN.gets.chomp.to_i
+            while chosen < 1
+                puts "requerying"
+                chosen= STDIN.gets.chomp.to_i
+            end
             if chosen == (correct_index +1)
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: true, game_id: $current_game.id)
                 puts "That's correct! Next question!"
@@ -127,7 +131,7 @@ class CLI
                 puts "#{insults.sample} The correct answer was #{current_q.correct_answer}."
                 puts
                 Session.create(user_id: $current_user.id, question_id: current_q.id, point_flag: false, game_id: $current_game.id)
-                sleep(3)
+                sleep(2)
             end
             
         end
