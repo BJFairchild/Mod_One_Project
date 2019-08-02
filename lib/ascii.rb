@@ -116,16 +116,18 @@ def tv
     puts "                  '-|_,-'   "
 end
 
- def video_games
+
+
+def video_games
     puts "     ________________"
     puts '    |   |,"    `.|   |'
     puts "    |   /  SONY  \\   |"
     puts "    |O _\\   />   /_  | "
     puts "    |_(_)'.____.'(_)_| "
     puts '    [___|[=]__[=]|___] '
- end
+end
  
- def board_games
+def board_games
     puts "     .-------.    ______"
     puts "    /   o   /|   /\\     \\"
     puts "   /_______/o|  \/o \\  o  \\"
@@ -133,5 +135,89 @@ end
     puts "   |   o   |o/ \\o   /o    /"
     puts "   |     o |\/   \\ o/  o  /"
     puts "   '-------'     \\/____o/"
- end
+end
  
+def science_and_math
+    
+    
+    puts "        oo   k        "  
+    puts "    x   __  x    "
+    puts "   e  = \\  ---    "
+    puts "        /_  k!\"   "
+    puts "        k=1      "
+   
+
+end
+
+
+def mythology
+
+puts"                 ___====-_  _-====___       "
+puts"           _--^^^#####//      \\\\#####^^^--_    "   
+puts"        _-^##########// (    ) \\\\##########^-_ "
+puts"       -############//  |\\^^/|  \\\\############-    "
+puts"     _/############//   (@::@)   \\\\############\\_  "
+puts"    /#############((     \\\\//     ))#############\\\    "
+puts"   -###############\\\\    (oo)    //###############-    "
+puts"  -#################\\\\  / VV \\  //#################-   "
+puts" -###################\\\\/      \\//###################-  "
+puts"_#/|##########/\\######(   /\\   )######/\\##########|\\#_ "
+puts"|/ |#/\\#/\\#/\\/  \\#/\\##\\  |  |  /##/\\#/  \\/\\#/\\#/\\#| \\| "
+puts"`  |/  V  V  `   V  \\#\\| |  | |/#/  V   '  V  V  \\|  ' "
+puts"   `   `  `      `   / | |  | | \\   '      '  '   '    "
+puts"                    (  | |  | |  ) "
+puts"                   __\\ | |  | | /__    "
+puts"                  (vvv(VVV)(VVV)vvv)   "
+
+
+end
+
+def sports
+puts"                                           o__ "
+puts"     o       o     _ o     _ o     o_     /       _ o"
+puts"    /\\    \\_/=    \\_/       /    _/__     '==      /_      o_"
+puts"____>______/________\\______/\\________________________\\____/__,____"
+
+end
+
+def geography
+puts"                  _-o#&&*''''?d:>b\\_"
+puts"             _o/\"`''   '',, dMF9MMMMMHo_"
+puts"           .o&#'        `\"MbHMMMMMMMMMMMHo."
+puts"         .o\"\" '         vodM*$&&HMMMMMMMMMM?."
+puts"        ,'              $M&ood,~'`(&##MMMMMMH\\"
+puts"       /               ,MMMMMMM#b?#bobMMMMHMMML"
+puts"      &              ?MMMMMMMMMMMMMMMMM7MMM$R*Hk"
+puts"     ?$.            :MMMMMMMMMMMMMMMMMMM/HMMM|`*L"
+puts"    |               |MMMMMMMMMMMMMMMMMMMMbMH'   T,"
+puts"    $H#:            `*MMMMMMMMMMMMMMMMMMMMb#}'  `?"
+puts"    ]MMH#             \"\"*\"\"\"\"*#MMMMMMMMMMMMM'    -"
+puts"    MMMMMb_                   |MMMMMMMMMMMP'      :"
+puts"    HMMMMMMMHo                 `MMMMMMMMMT        ."
+puts"    ?MMMMMMMMP                 9MMMMMMMM}         -"
+puts"    -?MMMMMMM                 |MMMMMMMMM?,d-      '"
+puts"     :|MMMMMM-                `MMMMMMMT .M|.      :"
+puts"      .9MMM[                   &MMMMM*' `'       ."
+puts"        :9MMk                 \`MMM#\"            -"
+puts"          &M}                  \`              .-"
+puts"            `&.                             ."
+puts"              `~,  .                     ./"
+puts"                 . _                  .-"
+puts"                   '`--._,dd###pp=\"\"\'"
+
+end
+
+#geography
+
+# mythology
+# science_and_math
+# board_games
+# video_games
+# tv
+# science_and_nature
+# musicals_theater
+# music
+# film
+# books
+# general_knowledge
+
